@@ -11802,7 +11802,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11876,7 +11876,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Minimum price of the data</span>
@@ -11894,6 +11894,18 @@ div#notebook {
 <span class="c1"># TODO: Standard deviation of prices of the data</span>
 <span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
+<span class="n">mean_ptratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;PTRATIO&#39;</span><span class="p">])</span>
+
+<span class="n">mean_rooms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;RM&#39;</span><span class="p">])</span>
+
+<span class="n">mean_pov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;LSTAT&#39;</span><span class="p">])</span>
+
+<span class="n">std_ptratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;PTRATIO&#39;</span><span class="p">])</span>
+
+<span class="n">std_rooms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;RM&#39;</span><span class="p">])</span>
+
+<span class="n">std_pov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;LSTAT&#39;</span><span class="p">])</span>
+
 <span class="c1"># Show the calculated statistics</span>
 <span class="k">print</span> <span class="s2">&quot;Statistics for Boston housing dataset:</span><span class="se">\n</span><span class="s2">&quot;</span>
 <span class="k">print</span> <span class="s2">&quot;Minimum price: ${:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">minimum_price</span><span class="p">)</span>
@@ -11901,6 +11913,12 @@ div#notebook {
 <span class="k">print</span> <span class="s2">&quot;Mean price: ${:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_price</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Median price ${:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">median_price</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Standard deviation of prices: ${:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">std_price</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Mean PTRatio: {:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_ptratio</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Mean Rooms: {:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_rooms</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Mean Poverty: {:,.2f}%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_pov</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;STD PTRatio: {:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">std_ptratio</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;STD Rooms: {:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">std_rooms</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;STD Poverty: {:,.2f}%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">std_pov</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11924,6 +11942,12 @@ Maximum price: $1,024,800.00
 Mean price: $454,342.94
 Median price $438,900.00
 Standard deviation of prices: $165,171.13
+Mean PTRatio: 18.52
+Mean Rooms: 6.24
+Mean Poverty: 12.94%
+STD PTRatio: 2.11
+STD Rooms: 0.64
+STD Poverty: 7.07%
 </pre>
 </div>
 </div>
@@ -13262,10 +13286,12 @@ yMzMzMzM2oYPgMzMzMzMrG38D7bxlCMzFvGwAAAAAElFTkSuQmCC
 <p><strong>Answer: </strong>
 Choice: Model with max_depth = 3
 The learning curves show that this is the most optimal model, the one that has generalized best. This model simultaneously minimizes both the training and testing error, meaning it has neither underfit nor overfit the data.</p>
-<p><strong>Effect of adding data points to training accuracy</strong>
-Initially (N &lt; 50), when there are very few data points, the model has extremely high accuracy. This is because there is very little data to generalize to, and so the model is effectively momorizing the answers to the training data. As more data points are added, the training accuracy drops, which is to be expected. This shows that the model is no longer merely memorizing the training data, but rather learning the underlying relationships in the training data, and generalizing to the same.</p>
-<p><strong>Effect of adding data points to testing accuracy</strong>
-The converse of the training is true here. Initially (N &lt; 50), the model has trained on very little data, which mostly it memorized, and therefore makes terrible predictions. As the model sees and learns from more training data, and begins to generalize to the data, the accuracy improves, somewhat dramatically at first (50 &lt;= N &lt;= 150), and asymptotically thereafter.</p>
+<p><strong>Effect of adding data points to training predictions</strong>
+Initially (N &lt; 50), when there are very few data points, the model makes extremely good predictions. This is because there is very little data to generalize to, and so the model is effectively momorizing the answers to the training data. As more data points are added, the training score drops, which is to be expected. This shows that the model is no longer merely memorizing the training data, but rather learning the underlying relationships in the training data, and generalizing to the same.</p>
+<p><strong>Effect of adding data points to testing predictions</strong>
+The converse of the training is true here. Initially (N &lt; 50), the model has trained on very little data, which mostly it memorized, and therefore makes terrible predictions. As the model sees and learns from more training data, and begins to generalize to the data, the score improves, somewhat dramatically at first (50 &lt;= N &lt;= 150), and asymptotically thereafter.</p>
+<p><strong>Adding more data to the model</strong>
+The graph for max_depth = 3 shows that the validation score reaches a high of about 0.8, and flattens out. It is also clear that the two lines are converging to a score of roughly 0.8. The score convergence itself proves that the model is not suffering high variance. The fact that both training and CV error is low also implies that the model does not have high bias. Therefore, it is unlikely that additional data points beyond 400 would have any significant impact on the model performance. If anything, there might be some scope to improve the model bias. We could see a better fit by adding more features, or fitting more complex or polynomial functions (which I guess is not a possibility in DecisionTreeRegressors, so we would have to rethink our choice of model)</p>
 
 </div>
 </div>
@@ -14002,6 +14028,15 @@ The optimal max_depth for the model is 4. This matches my guess in response to Q
 <span class="c1"># Mean price: $454,342.94</span>
 <span class="c1"># Median price $438,900.00</span>
 <span class="c1"># Standard deviation of prices: $165,171.13</span>
+<span class="c1"># Mean number of rooms:</span>
+<span class="c1"># Mean poverty level:</span>
+<span class="c1"># Mean ST Ratio: </span>
+<span class="c1"># Mean Rooms: 6.24</span>
+<span class="c1"># STD Rooms: 0.64</span>
+<span class="c1"># Mean Poverty: 12.94%</span>
+<span class="c1"># STD Poverty: 7.07%</span>
+<span class="c1"># Mean PTRatio: 18.52</span>
+<span class="c1"># STD PTRatio: 2.11</span>
 
 <span class="c1"># Show predictions</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">client_data</span><span class="p">)):</span>
@@ -14038,8 +14073,9 @@ Predicted selling price for Client 3&#39;s home: $919,609.09
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-The predicted prices are reasonable - the predictions conform to my guesses about how each of the features would affect the price.
-As expected, Client 3's house is priced highest since it has a large number of rooms, is in a low poverty and low student-teacher ratio neighbourhood. Likewise, Client 2 has the lowest price prediction since the house is in  a high poverty and high student-teacher ratio neighbourhood, and has fewer rooms.</p>
+The predicted prices are reasonable - the predictions conform to my guesses about how each of the features would affect the price. All the predictions fall within the dataset min &amp; max values.</p>
+<p>As expected, Client 3's house is priced highest since it has a large number of rooms, is in a low poverty and low student-teacher ratio neighbourhood. Likewise, Client 2 has the lowest price prediction since the house is in  a high poverty and high student-teacher ratio neighbourhood, and has fewer rooms.</p>
+<p>Client 1's predicted sale price is close to (just under) the mean price of homes in the dataset. We can also see that features that predict this also lie close to the dataset averages. This is seen in the data. The PTRatio for Client 1 (17) is slightly better the dataset average (18.52). The number of rooms is also lower than the average in the dataset. Likewise, the neighbourhood poverty level is worse than the dataset average. These two factors might be why the predicted price is near but below the dataset average mark.</p>
 
 </div>
 </div>

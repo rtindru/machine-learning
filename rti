@@ -27,6 +27,20 @@ class RTIGraph():
         marked = {}
         self.mark_component(node1, marked)
         return node2 in marked
+def mark_component_iterative(self, node, marked):
+		marked[node] = True
+		total_marked = 1
+		open_list = Queue.LifoQueue()
+		open_list.put(node)
+		while not open_list.empty():
+			node = open_list.get()
+			for neighbour in G[node]:
+				if neighbour not in marked:
+					total_marked += 1
+					marked[neighbour] = 1
+					open_list.put(neighbour)
+		return total_marked
+	
     
     def mark_component(self, node, marked):
         marked[node] = True

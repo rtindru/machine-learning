@@ -1,22 +1,24 @@
 import Queue
 
 class RTIGraph():
-    def __init__(self, edges):
+    def __init__(self, edges, directed=True):
         self.edges = edges
+        self.directed = directed
         self.G = {}
-        self._form_graph()
+        self._form_graph(directed)
     
-    def _form_graph(self):
+    def _form_graph(self, directed):
         for v1, v2 in self.edges:
-            self.make_link(v1, v2)
+            self.make_link(v1, v2, directed)
    
-    def make_link(self, node1, node2):
+    def make_link(self, node1, node2, directed):
         if node1 not in self.G:
             self.G[node1] = {}
         (self.G[node1])[node2] = 1
-        if node2 not in self.G:
-            self.G[node2] = {}
-        (self.G[node2])[node1] = 1
+        if not directed:
+            if node2 not in self.G:
+                self.G[node2] = {}
+            (self.G[node2])[node1] = 1
         return self.G
 
     def check_connection(self, node1, node2):
@@ -29,7 +31,7 @@ class RTIGraph():
     def mark_component(self, node, marked):
         marked[node] = True
         total_marked = 1
-        for neighbor in self.G[node]:
+        for neighbor in self.G.get(node, []):
             if neighbor not in marked:
                 total_marked += mark_component(self.G, neighbor, marked)
         return total_marked
@@ -83,7 +85,7 @@ class RTIGraph():
             elif mode == 'path':
                 pass
 
-            for neighbour in self.G[node]:
+            for neighbour in self.G.get(node, []):
                 if neighbour in marked:
                     continue
                 else:

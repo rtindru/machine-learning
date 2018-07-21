@@ -48,6 +48,7 @@ class LearningAgent(Agent):
             self.epsilon, self.alpha = 0, 0
         else:
             self.epsilon = self.decay_one(self.trial)
+            self.alpha = self.decay_four(self.trial)
 
         return None
 
@@ -60,7 +61,7 @@ class LearningAgent(Agent):
 
     def decay_four(self, trial):
         import math
-        alpha = 0.005
+        alpha = 0.0015
         return math.cos(alpha * trial)
 
     def build_state(self):
@@ -77,7 +78,7 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Set 'state' as a tuple of relevant data for the agent        
-        state = (waypoint, inputs['light'], inputs['oncoming'])
+        state = (waypoint, inputs['light'], inputs['oncoming'], inputs['left'])
 
         return state
 
@@ -108,7 +109,7 @@ class LearningAgent(Agent):
         # When learning, check if the 'state' is not in the Q-table
         # If it is not, create a new dictionary for that state
         #   Then, for each action available, set the initial Q-value to 0.0
-        if state not in self.Q:
+        if self.learning and state not in self.Q:
             self.Q[state] = {}
             for action in self.valid_actions:
                 self.Q[state][action] = 0.0
@@ -127,11 +128,17 @@ class LearningAgent(Agent):
         # When not learning, choose a random action
         # When learning, choose a random action with 'epsilon' probability
         #   Otherwise, choose an action with the highest Q-value for the current state
-        if not self.learning:
-            action = random.choice(self.valid_actions)
-        else:
-            maxQ = self.get_maxQ(state)
-            action = [a for a, q in self.Q[state].items() if q == maxQ][0]
+        random_action = random.choice(self.valid_actions)
+        if not self.learning:  
+            # Fully random
+            action = random_action
+        else:  
+            # Epsilon random
+            if random.random() <= self.epsilon:
+                action = random_action
+            else:
+                maxQ = self.get_maxQ(state)
+                action = random.choice([a for a, q in self.Q[state].items() if q == maxQ])
  
         return action
 
@@ -147,7 +154,8 @@ class LearningAgent(Agent):
         # When learning, implement the value iteration update rule
         #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
         if self.learning:
-            self.Q[state][action] = reward * self.alpha
+            prev_reward = self.Q[state][action]
+            self.Q[state][action] = ((1 - self.alpha) * prev_reward) + (self.alpha * reward)
 
         return
 
@@ -218,9 +226,9 @@ LEARNING = True
 DISPLAY = False
 N_TESTS = 100
 
-EPSILON = 1
-ALPHA = 0.6
-TOLERANCE = 0.005
+EPSILON = 1.0
+ALPHA = 1.0
+TOLERANCE = 0.001
 
 if __name__ == '__main__':
     run()

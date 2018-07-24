@@ -134,7 +134,7 @@ class LearningAgent(Agent):
             action = random_action
         else:  
             # Epsilon random
-            if random.random() <= self.epsilon:
+            if random.random() < self.epsilon:
                 action = random_action
             else:
                 maxQ = self.get_maxQ(state)
